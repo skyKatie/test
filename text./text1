@@ -26,5 +26,18 @@ int main()
 	return 0;
 }
 
-
+#include <iostream>
+using namespace std;
+int main()
+{
+ int n,i;
+ int sum;
+ cout<<"请输入阶乘数 n :"<<endl;
+ cin>>n;
+ for(i=1;i<=n;i++)
+ {
+     sum=i*sum;
+ }
+ cout<< "结果为 " << sum<< endl;
+}
  
