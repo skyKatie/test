@@ -1,1 +1,36 @@
+#include<iostream>
+using namespace std;
+int f(int n)
+{
+	if(n==0)
+	return 0;
+	if(n==1)
+	return 1;
+	if(n>=2)
+	return f(n-1)+f(n-2); 
+}
+int main()
+{
+	int n;
+	cout<<"请输入n的值"<<endl;
+	cin>>n;
+	cout<<f(n)<<endl;
+	return 0;
+ } 
+
+
+#include<iostream>
+using namespace std;
+int main(){
+	int f0=1,f1=1,f2=1;
+	int n;
+	cin>>n;
+	for(int i=3;i<=n;i++){
+		f2=f0+f1;
+		f0=f1;
+		f1=f2;
+	}
+	cout<<f2<<endl;
+	return 0;
+}
 
