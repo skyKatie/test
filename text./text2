@@ -1,1 +1,40 @@
+#include<iostream>
+using namespace std;
+int A(int n)
+{
+	int num=1;
+	for(int i=1;i<=n;i++)
+	{
+	num=i*num;	
+	}
+	cout<<num<<endl;
+}
+int main()
+{
+	int n;
+	cout<<"请输入n的值:"<<endl;
+	cin>>n;
+	A(n);
+	return 0;
+}
 
+
+#include<iostream>
+using namespace std;
+int f(int n)
+{
+	if(n==1)
+	return 1;
+	if(n==2)
+	return 2;
+	if(n>2)
+	return f(n-1)*n;
+}
+int main()
+{
+	int n;
+	cout<<"请输入n的值"<<endl;
+	cin>>n;
+	cout<<f(n)<<endl;
+return 0;
+} 
