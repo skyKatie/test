@@ -1,29 +1,46 @@
-package charp_1;
- 
-public class CountSort {
-	public static int[] countSort(int[] a, int k)
-	{
-		int[] c = new int[k];
-		for (int i = 0; i < a.length; i++) {
-			c[a[i]]++;
-		}
-		for (int i = 1; i < c.length; i++) {
-			c[i] += c[i-1];
-		}
-		int[] result = new int[a.length];
-		for (int i = a.length-1; i >= 0; i--) {
-			result[c[a[i]] - 1] = a[i];
-			c[a[i]]--;
-		}
-		return result;
-         }
-	public static void main(String[] args)
-	{
-		int[] a = new int[]{10, 5, 8 ,1, 3, 100, 7};
-		System.out.println("before sort:");
-		QuickSort.print(a);
-		System.out.println("after sort:");
-		QuickSort.print(countSort(a, 101));
-		
-	}
+#include<iostream>
+using namespace std; 
+int get_max(char  a[], int n)
+{
+    int i, max;
+
+    max = a[0];
+    for (i = 1; i < n; i++)
+        if (a[i] > max)
+            max = a[i];
+    return max;
 }
+void count_sort(char a[], int n, int exp)
+{
+    int output[n];             
+    int i, buckets[10] = {0};
+    for (i = 0; i < n; i++)
+        buckets[ (a[i]/exp)%10 ]++;
+    for (i = 1; i < 10; i++)
+        buckets[i] += buckets[i - 1];
+    for (i = n - 1; i >= 0; i--)
+    {
+        output[buckets[ (a[i]/exp)%10 ] - 1] = a[i];
+        buckets[ (a[i]/exp)%10 ]--;
+    }
+    for (i = 0; i < n; i++)
+        a[i] = output[i];
+}
+void radix_sort(char a[], int n)
+{
+    int exp;   
+    int max = get_max(a, n);  
+    for (exp = 1; max/exp > 0; exp *= 10)
+        count_sort(a, n, exp);
+}
+int main()
+{
+ int i;
+ char a[]={'s','k','y','m'};
+ radix_sort(a,4);
+ for(i=0;i<4;i++)
+ {
+   cout<<a[i]; 
+ }
+ return 0;
+ } 
