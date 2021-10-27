@@ -1,0 +1,61 @@
+#include<iostream>
+#include<ctime>
+#include <cstdlib> 
+using namespace std;
+int result;
+void swap(int &a, int &b){
+    int temp = a;
+    a = b;
+    b = temp;
+}
+void qSort(int* A, int left, int right, int k){
+    if (A == NULL)
+        return;
+    if (left == right)
+        result = A[left];
+    if (left < right){
+        int count = left;
+        int key = A[left];
+        swap(A[left], A[right]);
+        for (int i = left; i < right; ++i){
+            if (A[i] < key)
+                continue;
+            else {
+                swap(A[count], A[i]);
+                count++;
+            }
+        }
+        swap(A[count], A[right]);
+        if (count + 1 == k)
+        {
+            result = A[count];
+            return;
+        }
+        else if (count + 1 > k)
+            qSort(A, left, count - 1, k);
+        else if (count + 1 < k)
+            qSort(A, count + 1, right, k);
+    }
+}
+
+int main(){
+    const int n = 10;
+    srand(time(0));
+    int a[n] = { 0 };
+    for (int i = 0; i < n; i++)
+    {
+        a[i] = (rand() % 30);
+        cout << a[i] << " ";
+    }
+   cout << endl;
+ //int a[]={1,5,62,87,45,63,11,8,5,78};
+    int k;
+    cin>>k;
+    qSort(a, 0, n - 1, k);
+    for (int i = 0; i != n; ++i){
+        cout << a[i] << " ";
+    }
+    cout << endl;
+    cout << "第" << k << "大的值为：" << result << endl;
+    return 0;
+}
